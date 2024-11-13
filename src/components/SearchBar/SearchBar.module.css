@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid grey;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-form);
+}
+
+.input {
+  width: 240px;
+  height: 36px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-right: 20px;
+  padding: 8px;
+  margin-right: 40px;
+  box-shadow: var(--box-shadow-input);
+}

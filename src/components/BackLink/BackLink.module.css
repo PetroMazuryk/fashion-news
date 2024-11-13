@@ -1,0 +1,29 @@
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 454px 20px;
+
+  font-size: 22px;
+  background-color: #6a79d1;
+  box-shadow: 0 0 10px rgb(162, 57, 59);
+  color: red;
+  font-weight: 600;
+  width: 160px;
+  padding: 8px 20px;
+  border-radius: 12px;
+  opacity: 0.6;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 0 6px #0539aa, 0 0 6px #0539aa;
+  }
+}
+
+.textArrow {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}

@@ -1,0 +1,23 @@
+.messageWrapper {
+  max-width: 680px;
+  margin: 20px auto;
+  padding: 12px;
+  border: 1px solid grey;
+  box-shadow: var(--box-shadow-form);
+  border-radius: 8px;
+}
+
+.message {
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: brown;
+  background: #fffbd5;
+  background: -webkit-linear-gradient(to right, #eb5757, #000000);
+  background: linear-gradient(to right, #eb5757, #000000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

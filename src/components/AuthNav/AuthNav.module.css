@@ -1,0 +1,27 @@
+.wrapper {
+  text-align: center;
+}
+
+.link {
+  display: inline-block;
+  padding: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2a363b;
+}
+
+.link.active {
+  color: #e84a5f;
+}
+
+@media screen and (min-width: 480px) {
+  .link {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .link {
+    font-size: 24px;
+  }
+}

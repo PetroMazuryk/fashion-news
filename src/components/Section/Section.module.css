@@ -1,0 +1,27 @@
+.section {
+  margin: 0 auto;
+  padding: 20px 30px;
+  outline: 1px solid;
+  margin-bottom: 20px;
+  box-shadow: var(--box-shadow);
+  border-radius: 8px;
+}
+
+.text {
+  font-size: 32px;
+  text-align: center;
+  text-shadow: var(--text-shadow);
+  margin-bottom: 8px;
+}
+
+@media screen and (min-width: 480px) {
+  .section {
+    width: 440px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    width: 540px;
+  }
+}
