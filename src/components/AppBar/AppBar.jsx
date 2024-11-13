@@ -1,9 +1,8 @@
-import { FcTabletAndroid } from 'react-icons/fc';
-import { IconContext } from 'react-icons';
 import { Navigation } from '../Navigation/Navigation';
 import { AuthNav } from '../AuthNav/AuthNav';
 import { UserMenu } from '../UserMenu/UserMenu';
 import { useAuth } from '../../hooks';
+import newsImg from '../../assets/news.png';
 
 import css from './AppBar.module.css';
 
@@ -13,10 +12,7 @@ export const AppBar = () => {
     <header className={css.container}>
       <Navigation />
       <div className={css.wrapper}>
-        <IconContext.Provider value={{ size: '36px' }}>
-          <FcTabletAndroid />
-        </IconContext.Provider>
-        <span className={css.span}> Your favorite phone book</span>
+        <img className={css.Img} src={newsImg} alt="Photo fashion news" />
       </div>
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </header>
