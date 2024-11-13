@@ -12,7 +12,7 @@ export const HomeTitle = () => {
         <NavLink to="/register" className={css.span}>
           Register
         </NavLink>{' '}
-        to view and save your own contacts!
+        to view and save your fashion news!
       </p>
     </div>
   );
