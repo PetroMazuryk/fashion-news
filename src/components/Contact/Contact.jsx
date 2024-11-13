@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { FaUserAlt } from 'react-icons/fa';
-import { FaPhone } from 'react-icons/fa6';
+
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contacts/operations';
 import { Button } from '../Button/Button';
@@ -43,7 +42,7 @@ export default function Contact({ contact: { id, name, number } }) {
       <Modal visible={showModal} setVisible={setShowModal}>
         <form className={css.form}>
           <div className={css.labelWrapper}>
-            <label className={css.lable}>New Name:</label>
+            <label className={css.lable}>Fashion news text:</label>
             <input
               className={css.field}
               type="text"
@@ -55,7 +54,7 @@ export default function Contact({ contact: { id, name, number } }) {
             />
           </div>
           <div className={css.labelWrapper}>
-            <label className={css.lable}>New Number:</label>
+            <label className={css.lable}>Fashion news date:</label>
             <input
               className={css.field}
               type="text"
@@ -67,7 +66,7 @@ export default function Contact({ contact: { id, name, number } }) {
             />
           </div>
 
-          <div className={css.BtnWrapperModal}>
+          <div className={css.btnWrapperModal}>
             <Button variant="clear" onClick={handleCancel}>
               Cancel
             </Button>
@@ -79,18 +78,10 @@ export default function Contact({ contact: { id, name, number } }) {
       </Modal>
       <div className={css.contactWrapper}>
         <div>
-          <p>
-            {' '}
-            <FaUserAlt className={css.icon} size="18" />
-            {name}
-          </p>
-          <p>
-            {' '}
-            <FaPhone className={css.icon} size="18" />
-            {number}
-          </p>
+          <p>{name}</p>
+          <p>{number}</p>
         </div>
-        <div className={css.BtnWrapper}>
+        <div className={css.btnWrapper}>
           <Button variant="clear" onClick={() => setShowModal(true)}>
             Edit
           </Button>

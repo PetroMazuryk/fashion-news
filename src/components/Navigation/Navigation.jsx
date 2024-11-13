@@ -15,8 +15,8 @@ export const Navigation = () => {
         Home
       </NavLink>
       {isLoggedIn && (
-        <NavLink to="/contacts" className={buildLinkClass}>
-          Fascion News
+        <NavLink to="/fashion-news" className={buildLinkClass}>
+          Fashion News
         </NavLink>
       )}
     </nav>

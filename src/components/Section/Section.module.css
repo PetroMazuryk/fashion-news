@@ -2,6 +2,7 @@
   margin: 0 auto;
   padding: 20px 30px;
   outline: 1px solid;
+  margin-top: 20px;
   margin-bottom: 20px;
   box-shadow: var(--box-shadow);
   border-radius: 8px;

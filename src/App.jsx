@@ -10,7 +10,7 @@ import { refreshUser } from './redux/auth/operations.js';
 const Home = lazy(() => import('./pages/Home/Home.jsx'));
 const Register = lazy(() => import('./pages/Register/Register.jsx'));
 const Login = lazy(() => import('./pages/Login/Login.jsx'));
-const Contacts = lazy(() => import('./pages/Contacts/Contacts.jsx'));
+const FashionNews = lazy(() => import('./pages/FashionNews/FashionNews.jsx'));
 const NotFoundPage = lazy(() =>
   import('./pages/NotFoundPage/NotFoundPage.jsx')
 );
@@ -32,19 +32,22 @@ export const App = () => {
         <Route
           path="/register"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+            <RestrictedRoute
+              redirectTo="/fashion-news"
+              component={<Register />}
+            />
           }
         />
         <Route
           path="/login"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+            <RestrictedRoute redirectTo="/fashion-news" component={<Login />} />
           }
         />
         <Route
-          path="/contacts"
+          path="/fashion-news"
           element={
-            <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            <PrivateRoute redirectTo="/login" component={<FashionNews />} />
           }
         />
         <Route path="*" element={<NotFoundPage />} />

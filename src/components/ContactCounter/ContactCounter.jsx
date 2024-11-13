@@ -8,7 +8,7 @@ export const ContactCounter = () => {
 
   return (
     <div className={css.wrapper}>
-      <p className={css.text}>Total contacts:</p>
+      <p className={css.text}>Total fashion news:</p>
       <span className={css.total}> {countContacts}</span>
     </div>
   );

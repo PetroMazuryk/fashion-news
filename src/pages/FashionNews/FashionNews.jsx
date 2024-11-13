@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ContactList } from '../../components/ContactList/ContactList.jsx';
 import { Section } from '../../components/Section/Section.jsx';
 import { SearchBar } from '../../components/SearchBar/SearchBar.jsx';
-import { ContactForm } from '../../components/ContactForm/ContactForm.jsx';
-import { PhoneTitle } from '../../components/PhoneTitle/PhoneTitle.jsx';
+// import { ContactForm } from '../../components/ContactForm/ContactForm.jsx';
+// import { PhoneTitle } from '../../components/PhoneTitle/PhoneTitle.jsx';
 import { ContactCounter } from '../../components/ContactCounter/ContactCounter.jsx';
 import { Notification } from '../../components/Notification/Notification.jsx';
 import { fetchContacts } from '../../redux/contacts/operations.js';
@@ -16,7 +16,7 @@ import {
 } from '../../redux/contacts/selectors.js';
 import { DocumentTitle } from '../../components/DocumentTitle.jsx';
 
-export default function Contacts() {
+export default function FashionNews() {
   const dispatch = useDispatch();
   const contactsAll = useSelector(selectAllContacts);
   const isLoading = useSelector(selectIsLoading);
@@ -29,19 +29,13 @@ export default function Contacts() {
   return (
     <>
       <DocumentTitle>Contacts</DocumentTitle>
-      <PhoneTitle />
-
-      <Section title="Add new contacts">
-        <ContactForm />
-      </Section>
-
       {contactsAll.length > 0 && (
-        <Section title="Find contacts by name">
+        <Section title="Find fashion by name">
           <SearchBar />
         </Section>
       )}
 
-      <Section title="Contact List">
+      <Section title="Fashion News List">
         {contactsAll.length > 0 ? (
           <>
             <ContactCounter />
@@ -51,7 +45,7 @@ export default function Contacts() {
           <>
             {!error && (
               <>
-                <Notification message="There is no added contacts"></Notification>
+                <Notification message="There is no added fashion news"></Notification>
               </>
             )}
 
