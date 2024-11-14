@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteContact, editContact } from '../../redux/contacts/operations';
+import {
+  deleteFashionNews,
+  editFashionNews,
+} from '../../redux/contacts/operations';
 import { Button } from '../Button/Button';
 import { Modal } from '../Modal/Modal';
 import toast from 'react-hot-toast';
@@ -28,7 +31,7 @@ export default function FashionNews({ contact: { id, name, number } }) {
     }
 
     setShowModal(false);
-    dispatch(editContact({ id, name: newName, number: newNumber }))
+    dispatch(editFashionNews({ id, name: newName, number: newNumber }))
       .unwrap()
       .then(() => {
         toast.success('Edit success');
@@ -98,7 +101,10 @@ export default function FashionNews({ contact: { id, name, number } }) {
           <Button variant="clear" onClick={() => setShowModal(true)}>
             Edit
           </Button>
-          <Button variant="delete" onClick={() => dispatch(deleteContact(id))}>
+          <Button
+            variant="delete"
+            onClick={() => dispatch(deleteFashionNews(id))}
+          >
             Delete
           </Button>
         </div>

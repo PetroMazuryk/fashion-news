@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
+export const fetchFashionNews = createAsyncThunk(
+  'contacts/fetchFashionNews',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/contacts');
@@ -13,8 +13,8 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
-export const addContact = createAsyncThunk(
-  'contacts/addContact',
+export const addFashionNews = createAsyncThunk(
+  'contacts/addFashionNews',
   async ({ name, number }, thunkAPI) => {
     try {
       const response = await axios.post('/contacts', {
@@ -28,8 +28,8 @@ export const addContact = createAsyncThunk(
   }
 );
 
-export const deleteContact = createAsyncThunk(
-  'contacts/deleteContact',
+export const deleteFashionNews = createAsyncThunk(
+  'contacts/deleteFashionNews',
   async (contactId, thunkAPI) => {
     try {
       const response = await axios.delete(`/contacts/${contactId}`);
@@ -40,8 +40,8 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-export const editContact = createAsyncThunk(
-  'contacts/editContact',
+export const editFashionNews = createAsyncThunk(
+  'contacts/editFashionNews',
   async (contactId, thunkAPI) => {
     try {
       const response = await axios.patch(`/contacts/${contactId.id}`, {

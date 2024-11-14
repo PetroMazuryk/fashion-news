@@ -7,7 +7,7 @@ import { FashionNewsForm } from '../../components/FashionNewsForm/FashionNewsFor
 
 import { FashionNewsCounter } from '../../components/FashionNewsCounter/FashionNewsCounter.jsx';
 import { Notification } from '../../components/Notification/Notification.jsx';
-import { fetchContacts } from '../../redux/contacts/operations.js';
+import { fetchFashionNews } from '../../redux/contacts/operations.js';
 import { Spinner } from '../../components/Spinner/Spinner.jsx';
 import {
   selectAllContacts,
@@ -23,19 +23,19 @@ export default function FashionNews() {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchFashionNews());
   }, [dispatch]);
 
   return (
     <>
-      <DocumentTitle>Contacts</DocumentTitle>
+      <DocumentTitle>Fashion news</DocumentTitle>
 
       <Section title="Add new fashion news">
         <FashionNewsForm />
       </Section>
 
       {contactsAll.length > 0 && (
-        <Section title="Find fashion by name">
+        <Section title="Find fashion by text">
           <SearchBar />
         </Section>
       )}

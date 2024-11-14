@@ -1,7 +1,7 @@
 import { Formik, Form, Field } from 'formik';
 import { useId } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contacts/operations';
+import { addFashionNews } from '../../redux/contacts/operations';
 import { selectAllContacts } from '../../redux/contacts/selectors';
 import toast from 'react-hot-toast';
 import { Button } from '../Button/Button';
@@ -56,7 +56,7 @@ export const FashionNewsForm = () => {
       );
 
       const newContact = { name, number };
-      dispatch(addContact(newContact));
+      dispatch(addFashionNews(newContact));
       resetForm();
     }
   };
