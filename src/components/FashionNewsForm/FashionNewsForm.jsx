@@ -19,7 +19,7 @@ const FashionNewsSchema = Yup.object().shape({
   number: Yup.string()
     .matches(
       /^(January|February|March|April|May|June|July|August|September|October|November|December)\s(\d{4})$/,
-      'Month and year must be specified'
+      "Date must be in the format 'Month YYYY'."
     )
     .min(5, 'Month and year must be specified')
     .max(20, 'Must be exactly 10 digits')

@@ -1,10 +1,8 @@
 import { useState } from 'react';
-
 import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contacts/operations';
+import { deleteContact, editContact } from '../../redux/contacts/operations';
 import { Button } from '../Button/Button';
 import { Modal } from '../Modal/Modal';
-import { editContact } from '../../redux/contacts/operations';
 import toast from 'react-hot-toast';
 import css from './FashionNews.module.css';
 
@@ -14,9 +12,23 @@ export default function FashionNews({ contact: { id, name, number } }) {
   const [newName, setNewName] = useState(name);
   const [newNumber, setNewNumber] = useState(number);
 
+  const namePattern =
+    /^[a-zA-Zа-яА-Я]+([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*$/;
+  const datePattern =
+    /^(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}$/;
+
   const handleSave = () => {
+    if (!namePattern.test(newName)) {
+      toast.error('Name may contain only letters and appropriate symbols.');
+      return;
+    }
+    if (!datePattern.test(newNumber)) {
+      toast.error('Date must be in the format "Month YYYY".');
+      return;
+    }
+
     setShowModal(false);
-    dispatch(editContact({ id: id, name: newName, number: newNumber }))
+    dispatch(editContact({ id, name: newName, number: newNumber }))
       .unwrap()
       .then(() => {
         toast.success('Edit success');
@@ -33,6 +45,7 @@ export default function FashionNews({ contact: { id, name, number } }) {
   const handleNumberChange = e => {
     setNewNumber(e.target.value);
   };
+
   const handleCancel = () => {
     setShowModal(false);
   };
@@ -40,28 +53,28 @@ export default function FashionNews({ contact: { id, name, number } }) {
   return (
     <div>
       <Modal visible={showModal} setVisible={setShowModal}>
-        <form className={css.form}>
+        <form className={css.form} onSubmit={e => e.preventDefault()}>
           <div className={css.labelWrapper}>
-            <label className={css.lable}>Fashion news text:</label>
+            <label className={css.label}>Fashion news text:</label>
             <input
               className={css.field}
               type="text"
               value={newName}
               onChange={handleNameChange}
-              pattern="^[a-zA-Zа-яА-Я]+([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*$"
-              title="Name may contain only letters."
+              pattern={namePattern.source}
+              title="Name may contain only letters and appropriate symbols."
               required
             />
           </div>
           <div className={css.labelWrapper}>
-            <label className={css.lable}>Fashion news date:</label>
+            <label className={css.label}>Fashion news date:</label>
             <input
               className={css.field}
               type="text"
               value={newNumber}
               onChange={handleNumberChange}
-              pattern=" /^[Z0-9]+$/"
-              title="Phone number format "
+              pattern={datePattern.source}
+              title="Date must be in the format 'Month YYYY'."
               required
             />
           </div>
