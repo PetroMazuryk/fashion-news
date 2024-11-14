@@ -8,19 +8,22 @@ import { Button } from '../Button/Button';
 
 import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
-import css from './ContactForm.module.css';
+import css from './FashionNewsForm.module.css';
 
-const ContactSchema = Yup.object().shape({
+const FashionNewsSchema = Yup.object().shape({
   name: Yup.string()
     .matches(/^[a-zA-Z\s-]+$/, 'Must contain only letters')
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
-    .required('Username required for entry'),
+    .required('Title required for entry'),
   number: Yup.string()
-    .matches(/^[0-9-]+$/, 'Must only be numbers or dashes')
-    .min(5, 'Must be exactly 5 digits')
-    .max(10, 'Must be exactly 10 digits')
-    .required('Number required for entry'),
+    .matches(
+      /^(January|February|March|April|May|June|July|August|September|October|November|December)\s(\d{4})$/,
+      'Month and year must be specified'
+    )
+    .min(5, 'Month and year must be specified')
+    .max(20, 'Must be exactly 10 digits')
+    .required('Date required for entry'),
 });
 
 const initialValues = {
@@ -28,7 +31,7 @@ const initialValues = {
   number: '',
 };
 
-export const ContactForm = () => {
+export const FashionNewsForm = () => {
   const nameFieldId = useId();
   const numberFieldId = useId();
   const dispatch = useDispatch();
@@ -45,11 +48,11 @@ export const ContactForm = () => {
 
     if (contactAlreadyExists) {
       toast.error(
-        `A contact with the name "${name}" or number "${number}" already exists`
+        `A fashion news with the name "${name}" or number "${number}" already exists`
       );
     } else {
       toast.success(
-        `Congratulations, you have added a contact with a name "${name}" `
+        `Congratulations, you have added a fashion news with a name "${name}" `
       );
 
       const newContact = { name, number };
@@ -62,13 +65,13 @@ export const ContactForm = () => {
     <div>
       <Formik
         initialValues={initialValues}
-        validationSchema={ContactSchema}
+        validationSchema={FashionNewsSchema}
         onSubmit={handleFormSubmit}
       >
         <Form className={css.form}>
           <div className={css.labelWrapper}>
             <label className={css.label} htmlFor={nameFieldId}>
-              Name
+              Title
             </label>
             <Field
               className={css.field}
@@ -80,7 +83,7 @@ export const ContactForm = () => {
           </div>
           <div className={css.labelWrapper}>
             <label className={css.label} htmlFor={numberFieldId}>
-              Number
+              Date
             </label>
             <Field
               className={css.field}
@@ -103,7 +106,7 @@ export const ContactForm = () => {
             variant="add"
             type="submit"
           >
-            Add contact
+            Add fashion
           </Button>
         </Form>
       </Formik>

@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { selectAllContacts } from '../../redux/contacts/selectors';
-import css from './ContactCounter.module.css';
+import css from './FashionNewsCounter.module.css';
 
-export const ContactCounter = () => {
+export const FashionNewsCounter = () => {
   const contacts = useSelector(selectAllContacts);
   const countContacts = contacts.length;
 

@@ -6,9 +6,9 @@ import { Button } from '../Button/Button';
 import { Modal } from '../Modal/Modal';
 import { editContact } from '../../redux/contacts/operations';
 import toast from 'react-hot-toast';
-import css from './Contact.module.css';
+import css from './FashionNews.module.css';
 
-export default function Contact({ contact: { id, name, number } }) {
+export default function FashionNews({ contact: { id, name, number } }) {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [newName, setNewName] = useState(name);
