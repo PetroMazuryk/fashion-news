@@ -4,18 +4,14 @@
 
 .link {
   display: inline-block;
-  padding: 8px;
-  font-size: 20px;
-  font-weight: 700;
-  color: #2a363b;
-}
 
-.link.active {
-  color: #e84a5f;
+  margin: 6px 10px;
+  font-size: 20px;
 }
 
 @media screen and (min-width: 480px) {
   .link {
+    margin: 2px 10px;
     font-size: 20px;
   }
 }
