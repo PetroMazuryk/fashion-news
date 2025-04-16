@@ -8,12 +8,12 @@ import css from './UserMenu.module.css';
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
-
+console.log(user.name);
   return (
     <div className={css.wrapper}>
       <div className={css.wrapperImg}>
         <img className={css.logo} src={logo} alt="Logo" />
-        <p className={css.username}>Welcome, {user.name} !</p>
+        <p className={css.username}>Welcome, {user?.name} !</p>
       </div>
 
       <button
