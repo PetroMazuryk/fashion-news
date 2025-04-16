@@ -9,7 +9,7 @@ export const FashionNewsList = () => {
   return (
     <TransitionGroup>
       {filteredContactList.map(contact => (
-        <CSSTransition key={contact.id} timeout={500} classNames="contact">
+        <CSSTransition key={contact._id} timeout={500} classNames="contact">
           <FashionNews contact={contact} />
         </CSSTransition>
       ))}

@@ -8,7 +8,7 @@ import css from './UserMenu.module.css';
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
-console.log(user.name);
+
   return (
     <div className={css.wrapper}>
       <div className={css.wrapperImg}>
