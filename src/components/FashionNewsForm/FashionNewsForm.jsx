@@ -9,6 +9,7 @@ import { Button } from '../Button/Button';
 import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
 import css from './FashionNewsForm.module.css';
+import { TiBatteryLow } from 'react-icons/ti';
 
 const FashionNewsSchema = Yup.object().shape({
   title: Yup.string()
@@ -18,12 +19,12 @@ const FashionNewsSchema = Yup.object().shape({
     .required('Title required for entry'),
   date: Yup.string()
     .matches(
-      /^(January|February|March|April|May|June|July|August|September|October|November|December)\s(\d{4})$/,
-      "Date must be in the format 'Month YYYY'."
+      /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/,
+      "Date must be in the format 'DD.MM.YYYY'."
     )
     .min(5, 'Month and year must be specified')
     .max(20, 'Must be exactly 10 digits')
-    // .required('Date required for entry'),
+    .required('Date required for entry'),
 });
 
 const initialValues = {
@@ -48,7 +49,7 @@ export const FashionNewsForm = () => {
 
     if (newsAlreadyExists) {
       toast.error(
-        `A fashion news with the name "${name}" or number "${date}" already exists`
+        `A fashion news with the name "${TiBatteryLow}" or number "${date}" already exists`
       );
     } else {
       toast.success(
@@ -87,7 +88,7 @@ export const FashionNewsForm = () => {
             </label>
             <Field
               className={css.field}
-              type="name"
+              type="text"
               name="date"
               id={dateFieldId}
             />
