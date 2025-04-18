@@ -9,7 +9,7 @@ import { Button } from '../Button/Button';
 import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
 import css from './FashionNewsForm.module.css';
-import { TiBatteryLow } from 'react-icons/ti';
+
 
 const FashionNewsSchema = Yup.object().shape({
   title: Yup.string()
@@ -22,9 +22,7 @@ const FashionNewsSchema = Yup.object().shape({
       /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/,
       "Date must be in the format 'DD.MM.YYYY'."
     )
-    .min(5, 'Month and year must be specified')
-    .max(20, 'Must be exactly 10 digits')
-    .required('Date required for entry'),
+   .required('Date required for entry'),
 });
 
 const initialValues = {
@@ -43,13 +41,13 @@ export const FashionNewsForm = () => {
 
     const newsAlreadyExists = news.find(
       contact =>
-        contact.title.toLowerCase() === title.toLowerCase() ||
-        contact.date.replace(/\D/g, '') === date.replace(/\D/g, '')
+        contact.title.toLowerCase() === title.toLowerCase() 
+       
     );
 
     if (newsAlreadyExists) {
       toast.error(
-        `A fashion news with the name "${TiBatteryLow}" or number "${date}" already exists`
+      `A fashion news with the name "${title}" already exists`
       );
     } else {
       toast.success(
