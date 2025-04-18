@@ -11,7 +11,7 @@ import { Modal } from '../Modal/Modal';
 import toast from 'react-hot-toast';
 import css from './FashionNews.module.css';
 
-export default function FashionNews({ contact: { _id, title, date } }) {
+export default function FashionNews({ contact: { _id, title, date,content } }) {
 
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
@@ -88,10 +88,11 @@ export default function FashionNews({ contact: { _id, title, date } }) {
         </form>
       </Modal>
 
-      <div className={css.contactWrapper}>
+      <div className={css.newsWrapper}>
         <div>
           <p>{title}</p>
           <p>{date}</p>
+          <p className={css.contentWrapper}>{content}</p>
       
         </div>
         <div className={css.btnWrapper}>

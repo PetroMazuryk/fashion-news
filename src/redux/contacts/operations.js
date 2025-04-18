@@ -15,11 +15,12 @@ export const fetchFashionNews = createAsyncThunk(
 
 export const addFashionNews = createAsyncThunk(
   'contacts/addFashionNews',
-  async ({ title, date }, thunkAPI) => {
+  async ({ title, date ,content}, thunkAPI) => {
     try {
       const response = await axios.post('/news', {
        title,
-       date
+       date,
+       content
       });
       console.log(response.data);
       return response.data;

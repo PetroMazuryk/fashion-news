@@ -23,21 +23,28 @@ const FashionNewsSchema = Yup.object().shape({
       "Date must be in the format 'DD.MM.YYYY'."
     )
    .required('Date required for entry'),
+   content: Yup.string()
+    .min(10, 'Too Short!')
+    .max(1000, 'Too Long!')
+    .required('Content is required'),
 });
 
 const initialValues = {
   title: '',
   date: '',
+  content: '',
 };
 
 export const FashionNewsForm = () => {
   const titleFieldId = useId();
   const dateFieldId = useId();
+  const contentFieldId = useId();
+
   const dispatch = useDispatch();
   const news = useSelector(selectAllNews);
 
   const handleFormSubmit = (values, { resetForm }) => {
-    const { title, date } = values;
+    const { title, date,content } = values;
 
     const newsAlreadyExists = news.find(
       contact =>
@@ -54,7 +61,7 @@ export const FashionNewsForm = () => {
         `Congratulations, you have added a fashion news with a name "${title}" `
       );
 
-      const newContact = { title, date };
+      const newContact = { title, date,content };
       dispatch(addFashionNews(newContact));
       resetForm();
     }
@@ -96,6 +103,20 @@ export const FashionNewsForm = () => {
               component="span"
             />
           </div>
+
+          <div className={css.labelWrapper}>
+  <label className={css.label} htmlFor={contentFieldId}>
+    Content
+  </label>
+  <Field
+    as="textarea"
+    className={css.fielвContent}
+    name="content"
+    id="content"
+    rows={1}
+  />
+  <ErrorMessage className={css.error} name="content" component="span" />
+</div>
 
           <Button
             style={{

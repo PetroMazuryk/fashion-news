@@ -1,9 +1,20 @@
-.contactWrapper {
+.newsWrapper {
   outline: 1px solid grey;
   margin-bottom: 18px;
   padding: 4px 16px;
   border-radius: 10px;
   box-shadow: var(--box-shadow-form);
+
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+.contentWrapper{
+  border-radius: 10px;
+  outline: 1px solid grey;
+  padding: 4px;
+  margin-bottom: 5px;
 }
 
 .icon {
