@@ -10,7 +10,7 @@ import { Notification } from '../../components/Notification/Notification.jsx';
 import { fetchFashionNews } from '../../redux/contacts/operations.js';
 import { Spinner } from '../../components/Spinner/Spinner.jsx';
 import {
-  selectAllContacts,
+  selectAllNews,
   selectIsLoading,
   selectError,
 } from '../../redux/contacts/selectors.js';
@@ -18,7 +18,7 @@ import { DocumentTitle } from '../../components/DocumentTitle.jsx';
 
 export default function FashionNews() {
   const dispatch = useDispatch();
-  const contactsAll = useSelector(selectAllContacts);
+  const contactsAll = useSelector(selectAllNews);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 

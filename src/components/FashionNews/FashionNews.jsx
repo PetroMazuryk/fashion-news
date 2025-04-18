@@ -4,34 +4,41 @@ import {
   deleteFashionNews,
   editFashionNews,
 } from '../../redux/contacts/operations';
+
 import { Button } from '../Button/Button';
 import { Modal } from '../Modal/Modal';
+
 import toast from 'react-hot-toast';
 import css from './FashionNews.module.css';
 
-export default function FashionNews({ contact: { id, name, number } }) {
+export default function FashionNews({ contact: { id, title, date } }) {
+
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const [newName, setNewName] = useState(name);
-  const [newNumber, setNewNumber] = useState(number);
+  const [newTitle, setNewTitle] = useState(title);
+  const [newDate, setNewDate] = useState(date);
 
-  const namePattern =
+  console.log("🔍 id:", id);
+  console.log("🔍 title:", title);
+  console.log("🔍 date:", date);
+ 
+  const titlePattern =
     /^[a-zA-Zа-яА-Я]+([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*$/;
   const datePattern =
     /^(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}$/;
 
   const handleSave = () => {
-    if (!namePattern.test(newName)) {
-      toast.error('Name may contain only letters and appropriate symbols.');
+    if (!titlePattern.test(newTitle)) {
+      toast.error('Title may contain only letters and appropriate symbols.');
       return;
     }
-    if (!datePattern.test(newNumber)) {
+    if (!datePattern.test(newDate)) {
       toast.error('Date must be in the format "Month YYYY".');
       return;
     }
 
     setShowModal(false);
-    dispatch(editFashionNews({ id, name: newName, number: newNumber }))
+    dispatch(editFashionNews({ id, title: newTitle, date: newDate }))
       .unwrap()
       .then(() => {
         toast.success('Edit success');
@@ -41,17 +48,7 @@ export default function FashionNews({ contact: { id, name, number } }) {
       });
   };
 
-  const handleNameChange = e => {
-    setNewName(e.target.value);
-  };
-
-  const handleNumberChange = e => {
-    setNewNumber(e.target.value);
-  };
-
-  const handleCancel = () => {
-    setShowModal(false);
-  };
+  const handleCancel = () => setShowModal(false);
 
   return (
     <div>
@@ -62,10 +59,10 @@ export default function FashionNews({ contact: { id, name, number } }) {
             <input
               className={css.field}
               type="text"
-              value={newName}
-              onChange={handleNameChange}
-              pattern={namePattern.source}
-              title="Name may contain only letters and appropriate symbols."
+              value={newTitle}
+              onChange={e => setNewTitle(e.target.value)}
+              pattern={titlePattern.source}
+              title="Title may contain only letters and appropriate symbols."
               required
             />
           </div>
@@ -74,8 +71,8 @@ export default function FashionNews({ contact: { id, name, number } }) {
             <input
               className={css.field}
               type="text"
-              value={newNumber}
-              onChange={handleNumberChange}
+              value={newDate}
+              onChange={e => setNewDate(e.target.value)}
               pattern={datePattern.source}
               title="Date must be in the format 'Month YYYY'."
               required
@@ -92,10 +89,13 @@ export default function FashionNews({ contact: { id, name, number } }) {
           </div>
         </form>
       </Modal>
+
       <div className={css.contactWrapper}>
         <div>
-          <p>{name}</p>
-          <p>{number}</p>
+          {/* <p>{title}</p>
+          <p>{date}</p> */}
+      <p>{typeof title === 'string' ? title : JSON.stringify(title)}</p>
+      <p>{typeof date === 'string' ? date : JSON.stringify(date)}</p>
         </div>
         <div className={css.btnWrapper}>
           <Button variant="clear" onClick={() => setShowModal(true)}>
