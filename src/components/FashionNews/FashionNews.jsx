@@ -11,7 +11,7 @@ import { Modal } from '../Modal/Modal';
 import toast from 'react-hot-toast';
 import css from './FashionNews.module.css';
 
-export default function FashionNews({ contact: { _id, title, date,content } }) {
+export default function FashionNews({ contact: { _id, title, date, content } }) {
 
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
