@@ -1,6 +1,13 @@
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../hooks';
+
 import css from './HomeTitle.module.css';
+
 export const HomeTitle = () => {
+  const { isLoggedIn } = useAuth();
+
+  if (isLoggedIn) return null;
+
   return (
     <div className={css.container}>
       <p className={css.text}>

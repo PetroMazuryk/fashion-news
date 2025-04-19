@@ -12,7 +12,7 @@ export default function Home() {
   const images = [ImgA, ImgB, ImgC, ImgD, ImgE];
 
   return (
-    <div>
+    <div style={{ marginTop: '20px' }}>
       <DocumentTitle>Home</DocumentTitle>
       <HomeTitle />
       <Slider images={images} />
