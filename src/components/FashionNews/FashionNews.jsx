@@ -49,7 +49,7 @@ export default function FashionNews({ contact: { _id, title, date, content } }) 
   const handleCancel = () => setShowModal(false);
 
   return (
-    <div>
+    <>
       <Modal visible={showModal} setVisible={setShowModal}>
         <form className={css.form} onSubmit={e => e.preventDefault()}>
           <div className={css.labelWrapper}>
@@ -107,6 +107,6 @@ export default function FashionNews({ contact: { _id, title, date, content } }) 
           </Button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
