@@ -4,6 +4,7 @@ import {
   addFashionNews,
   deleteFashionNews,
   editFashionNews,
+  updateNewsFavorite,
 } from './operations';
 
 const handlePending = state => {
@@ -42,7 +43,9 @@ export const contactsSlice = createSlice({
       .addCase(deleteFashionNews.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = state.items.filter(item => item._id !== action.payload._id);
+        state.items = state.items.filter(
+          item => item._id !== action.payload._id
+        );
       })
       .addCase(deleteFashionNews.rejected, handleRejected)
       .addCase(editFashionNews.pending, handlePending)
@@ -53,7 +56,22 @@ export const contactsSlice = createSlice({
           item._id === action.payload._id ? action.payload : item
         );
       })
-      .addCase(editFashionNews.rejected, handleRejected),
+      .addCase(editFashionNews.rejected, handleRejected)
+      .addCase(updateNewsFavorite.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateNewsFavorite.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        const index = state.items.findIndex(item => item._id === payload._id);
+        if (index !== -1) {
+          state.items[index] = payload;
+        }
+      })
+      .addCase(updateNewsFavorite.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      }),
 });
 
 export const contactsReducer = contactsSlice.reducer;

@@ -15,12 +15,12 @@ export const fetchFashionNews = createAsyncThunk(
 
 export const addFashionNews = createAsyncThunk(
   'contacts/addFashionNews',
-  async ({ title, date ,content}, thunkAPI) => {
+  async ({ title, date, content }, thunkAPI) => {
     try {
       const response = await axios.post('/news', {
-       title,
-       date,
-       content
+        title,
+        date,
+        content,
       });
       console.log(response.data);
       return response.data;
@@ -54,6 +54,20 @@ export const editFashionNews = createAsyncThunk(
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateNewsFavorite = createAsyncThunk(
+  'contacts/updateFavorite',
+  async ({ id, favorite }, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(`/news/${id}/favorite`, {
+        favorite,
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );

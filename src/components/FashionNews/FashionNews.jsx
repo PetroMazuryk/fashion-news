@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import {
   deleteFashionNews,
   editFashionNews,
+  updateNewsFavorite,
 } from '../../redux/contacts/operations';
 
 import { IconHeart } from '../Icons/IconHeart';
@@ -55,6 +56,10 @@ export default function FashionNews({
   };
 
   const handleCancel = () => setShowModal(false);
+
+  const toggleFavorite = (_id, favorite) => {
+    dispatch(updateNewsFavorite({ id: _id, favorite: !favorite }));
+  };
 
   return (
     <>
@@ -115,7 +120,10 @@ export default function FashionNews({
           <p className={css.contentWrapper}>{content}</p>
         </div>
         <div className={css.heartWrapper}>
-          <IconHeart active={favorite} />
+          <IconHeart
+            active={favorite}
+            onClick={() => toggleFavorite(_id, favorite)}
+          />
         </div>
         <div className={css.btnWrapper}>
           <Button variant="clear" onClick={() => setShowModal(true)}>
