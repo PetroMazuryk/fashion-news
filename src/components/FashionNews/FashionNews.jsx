@@ -6,9 +6,10 @@ import {
   editFashionNews,
 } from '../../redux/contacts/operations';
 
+import { IconHeart } from '../Icons/IconHeart';
 import { Button } from '../Button/Button';
 import { Modal } from '../Modal/Modal';
-import icon from '../../assets/sprite.svg';
+
 import css from './FashionNews.module.css';
 
 export default function FashionNews({
@@ -112,17 +113,10 @@ export default function FashionNews({
           <p>{title}</p>
           <p>{date}</p>
           <p className={css.contentWrapper}>{content}</p>
-          <div className={css.heartWrapper}>
-            <svg
-              width={22}
-              height={22}
-              className={`${css.like} ${favorite ? css.likeActive : ''}`}
-            >
-              <use href={`${icon}#icon-favorite`} />
-            </svg>
-          </div>
         </div>
-
+        <div className={css.heartWrapper}>
+          <IconHeart active={favorite} />
+        </div>
         <div className={css.btnWrapper}>
           <Button variant="clear" onClick={() => setShowModal(true)}>
             Edit
