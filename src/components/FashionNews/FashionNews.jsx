@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 import {
   deleteFashionNews,
   editFashionNews,
@@ -7,22 +8,22 @@ import {
 
 import { Button } from '../Button/Button';
 import { Modal } from '../Modal/Modal';
-
-import toast from 'react-hot-toast';
+import icon from '../../assets/sprite.svg';
 import css from './FashionNews.module.css';
 
-export default function FashionNews({ contact: { _id, title, date, content } }) {
-
+export default function FashionNews({
+  contact: { _id, title, date, content, favorite },
+}) {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newDate, setNewDate] = useState(date);
   const [newContent, setNewContent] = useState(content);
 
-    const titlePattern =
+  const titlePattern =
     /^[a-zA-Zа-яА-Я]+([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*$/;
 
-    const datePattern = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
+  const datePattern = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
 
   const handleSave = () => {
     if (!titlePattern.test(newTitle)) {
@@ -35,7 +36,14 @@ export default function FashionNews({ contact: { _id, title, date, content } }) 
     }
 
     setShowModal(false);
-    dispatch(editFashionNews({ _id, title: newTitle, date: newDate,content: newContent }))
+    dispatch(
+      editFashionNews({
+        _id,
+        title: newTitle,
+        date: newDate,
+        content: newContent,
+      })
+    )
       .unwrap()
       .then(() => {
         toast.success('Edit success');
@@ -77,16 +85,16 @@ export default function FashionNews({ contact: { _id, title, date, content } }) 
           </div>
 
           <div className={css.labelWrapper}>
-  <label className={css.label}>Fashion news content:</label>
-  <textarea
-    className={css.fieldContent}
-    value={newContent}
-    onChange={e => setNewContent(e.target.value)}
-    required
-    rows={4}
-    placeholder="Enter content here..."
-  />
-</div>
+            <label className={css.label}>Fashion news content:</label>
+            <textarea
+              className={css.fieldContent}
+              value={newContent}
+              onChange={e => setNewContent(e.target.value)}
+              required
+              rows={4}
+              placeholder="Enter content here..."
+            />
+          </div>
 
           <div className={css.btnWrapperModal}>
             <Button variant="clear" onClick={handleCancel}>
@@ -104,8 +112,17 @@ export default function FashionNews({ contact: { _id, title, date, content } }) 
           <p>{title}</p>
           <p>{date}</p>
           <p className={css.contentWrapper}>{content}</p>
-      
+          <div className={css.heartWrapper}>
+            <svg
+              width={22}
+              height={22}
+              className={`${css.like} ${favorite ? css.likeActive : ''}`}
+            >
+              <use href={`${icon}#icon-favorite`} />
+            </svg>
+          </div>
         </div>
+
         <div className={css.btnWrapper}>
           <Button variant="clear" onClick={() => setShowModal(true)}>
             Edit
