@@ -46,9 +46,10 @@ export const editFashionNews = createAsyncThunk(
   'contacts/editFashionNews',
   async (contactId, thunkAPI) => {
     try {
-      const response = await axios.patch(`/news/${contactId.id}`, {
-        name: contactId.name,
-        number: contactId.number,
+      const response = await axios.patch(`/news/${contactId._id}`, {
+        title: contactId.title,
+        date: contactId.date,
+        content: contactId.content,
       });
       return response.data;
     } catch (error) {

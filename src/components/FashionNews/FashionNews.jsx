@@ -17,10 +17,9 @@ export default function FashionNews({ contact: { _id, title, date, content } }) 
   const [showModal, setShowModal] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newDate, setNewDate] = useState(date);
+  const [newContent, setNewContent] = useState(content);
 
-
- 
-  const titlePattern =
+    const titlePattern =
     /^[a-zA-Zа-яА-Я]+([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*$/;
 
     const datePattern = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
@@ -36,7 +35,7 @@ export default function FashionNews({ contact: { _id, title, date, content } }) 
     }
 
     setShowModal(false);
-    dispatch(editFashionNews({ _id, title: newTitle, date: newDate }))
+    dispatch(editFashionNews({ _id, title: newTitle, date: newDate,content: newContent }))
       .unwrap()
       .then(() => {
         toast.success('Edit success');
@@ -76,6 +75,18 @@ export default function FashionNews({ contact: { _id, title, date, content } }) 
               required
             />
           </div>
+
+          <div className={css.labelWrapper}>
+  <label className={css.label}>Fashion news content:</label>
+  <textarea
+    className={css.fieldContent}
+    value={newContent}
+    onChange={e => setNewContent(e.target.value)}
+    required
+    rows={4}
+    placeholder="Enter content here..."
+  />
+</div>
 
           <div className={css.btnWrapperModal}>
             <Button variant="clear" onClick={handleCancel}>

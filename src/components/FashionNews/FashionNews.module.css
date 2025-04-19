@@ -60,6 +60,16 @@
   box-shadow: var(--box-shadow-input);
 }
 
+.fieldContent{
+  width: 100%;
+  padding: 8px;
+  resize: vertical;  
+  min-height: 80px; 
+  line-height: 1.4;
+  margin-right: 14px;
+  box-shadow: var(--box-shadow-input);
+}
+
 .btnWrapperModal {
   display: flex;
   align-items: center;

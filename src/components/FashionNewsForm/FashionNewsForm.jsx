@@ -110,7 +110,7 @@ export const FashionNewsForm = () => {
   </label>
   <Field
     as="textarea"
-    className={css.fielвContent}
+    className={css.fieldContent}
     name="content"
     id="content"
     rows={1}

@@ -31,7 +31,7 @@
 
 }
 
-.fielвContent{
+.fieldContent{
   width: 100%;
   padding: 8px;
   resize: vertical;  
@@ -40,6 +40,7 @@
   margin-right: 14px;
   box-shadow: var(--box-shadow-input);
 }
+
 .error {
   color: tomato;
 }
