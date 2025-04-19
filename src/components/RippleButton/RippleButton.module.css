@@ -1,7 +1,7 @@
 .rippleButton {
   position: relative;
   overflow: hidden;
-  width: 120px;
+  max-width: 186px;
   color: black;
   background-color: #1976d2;
   border-radius: 6px;
