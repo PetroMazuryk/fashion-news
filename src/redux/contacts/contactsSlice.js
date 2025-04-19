@@ -42,7 +42,7 @@ export const contactsSlice = createSlice({
       .addCase(deleteFashionNews.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = state.items.filter(item => item.id !== action.payload.id);
+        state.items = state.items.filter(item => item._id !== action.payload._id);
       })
       .addCase(deleteFashionNews.rejected, handleRejected)
       .addCase(editFashionNews.pending, handlePending)
@@ -50,7 +50,7 @@ export const contactsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.items = state.items.map(item =>
-          item.id === action.payload.id ? action.payload : item
+          item._id === action.payload._id ? action.payload : item
         );
       })
       .addCase(editFashionNews.rejected, handleRejected),
