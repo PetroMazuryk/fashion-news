@@ -22,8 +22,7 @@ export default function FashionNews({
   const [newDate, setNewDate] = useState(date);
   const [newContent, setNewContent] = useState(content);
 
-  const titlePattern =
-    /^[a-zA-Zа-яА-Я]+([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*$/;
+  const titlePattern = /^[a-zA-Zа-яА-Я]+([ '-][a-zA-Zа-яА-Я]+)*$/;
 
   const datePattern = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
 

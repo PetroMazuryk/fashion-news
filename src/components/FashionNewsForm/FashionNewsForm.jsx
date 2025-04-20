@@ -10,10 +10,12 @@ import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
 import css from './FashionNewsForm.module.css';
 
-
 const FashionNewsSchema = Yup.object().shape({
   title: Yup.string()
-    .matches(/^[a-zA-Z\s-]+$/, 'Must contain only letters')
+    .matches(
+      /^[a-zA-Zа-яА-Я]+([ '-][a-zA-Zа-яА-Я]+)*$/,
+      'Must contain only letters, spaces, apostrophe or hyphen'
+    )
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Title required for entry'),
@@ -22,8 +24,8 @@ const FashionNewsSchema = Yup.object().shape({
       /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/,
       "Date must be in the format 'DD.MM.YYYY'."
     )
-   .required('Date required for entry'),
-   content: Yup.string()
+    .required('Date required for entry'),
+  content: Yup.string()
     .min(10, 'Too Short!')
     .max(1000, 'Too Long!')
     .required('Content is required'),
@@ -44,24 +46,20 @@ export const FashionNewsForm = () => {
   const news = useSelector(selectAllNews);
 
   const handleFormSubmit = (values, { resetForm }) => {
-    const { title, date,content } = values;
+    const { title, date, content } = values;
 
     const newsAlreadyExists = news.find(
-      contact =>
-        contact.title.toLowerCase() === title.toLowerCase() 
-       
+      contact => contact.title.toLowerCase() === title.toLowerCase()
     );
 
     if (newsAlreadyExists) {
-      toast.error(
-      `A fashion news with the name "${title}" already exists`
-      );
+      toast.error(`A fashion news with the name "${title}" already exists`);
     } else {
       toast.success(
         `Congratulations, you have added a fashion news with a name "${title}" `
       );
 
-      const newContact = { title, date,content };
+      const newContact = { title, date, content };
       dispatch(addFashionNews(newContact));
       resetForm();
     }
@@ -97,26 +95,26 @@ export const FashionNewsForm = () => {
               name="date"
               id={dateFieldId}
             />
-            <ErrorMessage
-              className={css.error}
-              name="date"
-              component="span"
-            />
+            <ErrorMessage className={css.error} name="date" component="span" />
           </div>
 
           <div className={css.labelWrapper}>
-  <label className={css.label} htmlFor={contentFieldId}>
-    Content
-  </label>
-  <Field
-    as="textarea"
-    className={css.fieldContent}
-    name="content"
-    id="content"
-    rows={1}
-  />
-  <ErrorMessage className={css.error} name="content" component="span" />
-</div>
+            <label className={css.label} htmlFor={contentFieldId}>
+              Content
+            </label>
+            <Field
+              as="textarea"
+              className={css.fieldContent}
+              name="content"
+              id="content"
+              rows={1}
+            />
+            <ErrorMessage
+              className={css.error}
+              name="content"
+              component="span"
+            />
+          </div>
 
           <Button
             style={{
