@@ -11,6 +11,9 @@ const Home = lazy(() => import('./pages/Home/Home.jsx'));
 const Register = lazy(() => import('./pages/Register/Register.jsx'));
 const Login = lazy(() => import('./pages/Login/Login.jsx'));
 const FashionNews = lazy(() => import('./pages/FashionNews/FashionNews.jsx'));
+const FavoriteNewsPage = lazy(() =>
+  import('./pages/FavoriteNewsPage/FavoriteNewsPage.jsx')
+);
 const NotFoundPage = lazy(() =>
   import('./pages/NotFoundPage/NotFoundPage.jsx')
 );
@@ -48,6 +51,15 @@ export const App = () => {
           path="/fashion-news"
           element={
             <PrivateRoute redirectTo="/login" component={<FashionNews />} />
+          }
+        />
+        <Route
+          path="/favorite-news"
+          element={
+            <PrivateRoute
+              redirectTo="/login"
+              component={<FavoriteNewsPage />}
+            />
           }
         />
         <Route path="*" element={<NotFoundPage />} />

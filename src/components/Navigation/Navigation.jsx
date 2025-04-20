@@ -28,6 +28,18 @@ export const Navigation = () => {
           )}
         </NavLink>
       )}
+      {isLoggedIn && (
+        <NavLink to="/favorite-news" className={css.link}>
+          {({ isActive }) => (
+            <RippleButton
+              isActive={isActive}
+              className={clsx(css.rippleButton)}
+            >
+              Favorite
+            </RippleButton>
+          )}
+        </NavLink>
+      )}
     </nav>
   );
 };
