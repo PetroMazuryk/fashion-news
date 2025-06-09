@@ -32,14 +32,35 @@ export const App = () => {
       style={{
         position: 'fixed',
         top: '25%',
-        left: '45%',
+        left: '50%',
+        transform: 'translateX(-50%)',
         zIndex: '19',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      <b>Refreshing user...</b>
+      <style>
+        {`
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  `}
+      </style>
+      <b
+        style={{
+          fontSize: 18,
+          marginBottom: '10px',
+          color: '#f47e60',
+          textShadow: '0px 0px 10px rgba(255, 255, 255, 0.7)',
+          animation: 'pulse 1.5s infinite',
+        }}
+      >
+        Refreshing user...
+      </b>
+
       <Spinner />
     </div>
   ) : (
