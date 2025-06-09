@@ -2,6 +2,7 @@ import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout.jsx';
+import { Spinner } from './components/Spinner/Spinner.jsx';
 import { RestrictedRoute } from './components/RestrictedRoute.jsx';
 import { PrivateRoute } from './components/PrivateRoute.jsx';
 import { useAuth } from './hooks';
@@ -26,8 +27,21 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
+  return !isRefreshing ? (
+    <div
+      style={{
+        position: 'fixed',
+        top: '25%',
+        left: '45%',
+        zIndex: '19',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <b>Refreshing user...</b>
+      <Spinner />
+    </div>
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
