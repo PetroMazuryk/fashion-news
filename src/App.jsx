@@ -27,7 +27,7 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return !isRefreshing ? (
+  return isRefreshing ? (
     <div
       style={{
         position: 'fixed',
